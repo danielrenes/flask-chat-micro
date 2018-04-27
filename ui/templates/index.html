@@ -1,0 +1,67 @@
+<html>
+  <head>
+    <title>Flask-Chat</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css"></link>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}"></link>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+    <script src="{{ url_for('static', filename='js/functions.js') }}"></script>
+  </head>
+  <body>
+    <div class="container full-height">
+      <div class="tile is-ancestor full-height">
+        <div class="tile is-vertical is-9 notification is-parent full-height">
+          <div class="tile is-child box full-height">
+            <form class="control" id="login" method="POST" action="/user/login">
+              <div class="field is-horizontal">
+                <div class="field">
+                  <p class="control">
+                    <input class="input" type="text" name="username" placeholder="Username">
+                  </p>
+                </div>
+                <div class="field">
+                  <p class="control">
+                    <input class="input" type="password" name="password" placeholder="Password">
+                  </p>
+                </div>
+                <div class="field">
+                  <p class="control">
+                    <input class="button is-success is-pulled-right" type="submit" value="Login">
+                  </p>
+                </div>
+              </div>
+            </form>
+            <p class="button is-danger is-pulled-right" style="display: none;" id="logout">Logout</p>
+            <ul id="messages">
+            {% for message in messages %}
+              <li>{{ message.text }} - {{ message.user.name }}</li>
+            {% endfor %}
+            </ul>
+            <form class="control" id="msg" method="POST" action="/msg/send">
+              <div class="field">
+                <div class="control">
+                  <input class="input" type="text" name="text">
+                </div>
+              </div>
+              <div class="field">
+                <div class="control is-pulled-right">
+                  <input class="button is-info" type="submit" value="Send">
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="tile is-vertical is-3 notification is-parent full-height">
+          <div class="tile is-child box full-height">
+            <ul id="active_users">
+            {% for active_user in active_users %}
+              <li>{{ active_user.name }}</li>
+            {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

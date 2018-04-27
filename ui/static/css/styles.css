@@ -1,0 +1,47 @@
+ul#messages {
+    width: 100%;
+    height: 65%;
+}
+
+form#msg {
+    width: 100%;
+    height: 15%;
+}
+
+form#msg > input {
+    width: 100%;
+    height: 70%;
+}
+
+form#login {
+    width: 100%;
+}
+
+form#login > input {
+    width: 200px;
+}
+
+form#login > input:last-child,
+form#msg > input:last-child,
+button#logout {
+    width: 80px;
+    height: 30px;
+    float: right;
+}
+
+ul#active_users {
+    width: 100%;
+    height: 100%;
+}
+
+.hidden {
+    display: none;
+}
+
+.full-height {
+  height: 100%;
+}
+
+li {
+    list-style: none;
+}
